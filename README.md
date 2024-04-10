@@ -29,13 +29,17 @@ ddev composer install
 # Import the database snapshot.
 ddev import-db --src=./backup.sql
 
-Decoupled React Application
+# Decoupled React Application
+
 The /react_app directory contains an example decoupled React application built with create-react-app. It is built to interact with the API provided by Drupal installed in /D10React.
 
 To download dependencies and start the local development server run:
 
 cd react_app
+
+# Install
 npm install
+# Run App
 npm run start
 You might need to update some configuration to make sure it points to your local Drupal installation.
 
