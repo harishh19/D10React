@@ -48,33 +48,32 @@ const ProductItem = (products) => {
           {addedProduct && (<p>{addedProduct.title} added to cart!</p>)}
         </div>
       )}
-      {/* <Row xs={1} md={4} className="g-4"> */}
-      <Row xs={12} sm={2} md={3} lg={4} className='g-4'>
-        {item.length > 0 && item.map((res, idx) => {
-          const Img = getimageUri(res.relationships.field_product_image.data.meta.drupal_internal__target_id);
-          const cartObj = {
-            id: res.id,
-            title: res.attributes.title,
-            imgUrl: PUBLIC_URL + Img.attributes.uri.url,
-            price: res.attributes.field_selling_price
-          }
-          return (
-            <Col key={res.id} className='productItem'>
-              <Card>
-                <Card.Img variant="top" src={PUBLIC_URL + Img.attributes.uri.url} />
-                <Card.Body>
-                  <Card.Title>{res.attributes.title}</Card.Title>
-                  <Row>
-                    <Col xs={12} sm={12} md={6}><span className="card-title">${res.attributes.field_selling_price}</span></Col>
-                    <Col xs={12} sm={12} md={6}><Button className="cartButton" onClick={() => addToCart(cartObj)}>Add To Cart</Button></Col>
-                  </Row>
-                </Card.Body>
-              </Card>
-            </Col>
-          )
-        }
-        )}
-      </Row>
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+          {item.length > 0 && item.map((res, idx) => {
+            const Img = getimageUri(res.relationships.field_product_image.data.meta.drupal_internal__target_id);
+            const cartObj = {
+              id: res.id,
+              title: res.attributes.title,
+              imgUrl: PUBLIC_URL + Img.attributes.uri.url,
+              price: res.attributes.field_selling_price
+            }
+            return (
+              <div key={res.id} className="bg-white rounded-lg shadow-md p-3">
+                <img src={PUBLIC_URL + Img.attributes.uri.url} alt={res.attributes.title} className="w-full h-48 object-cover mb-4" />
+                <h2 className="text-lg font-bold">{res.attributes.title}</h2>
+                <div className="flex justify-between items-center">
+                <p className="text-gray-600 pt-2">${res.attributes.field_selling_price}</p>
+                <button className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-1 px-2 rounded cartButton" onClick={() => addToCart(cartObj)}>
+                  Add to Cart
+                </button>
+                </div>
+              </div>
+            )
+
+          })}
+        </div>
+      </div>
       <ProductViewButton cartItems={cartItems} setCartItems={updateCart} />
     </>
   )

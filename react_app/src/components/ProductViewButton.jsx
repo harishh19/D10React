@@ -17,7 +17,6 @@ const ProductViewButton = (cartItems) => {
     const hideCartModal = () => {
         setShowModal(false);
     };
-    // console.log(CartItemArry);
     // Calculate total price of all items in the cart
     const calculateTotalPrice = () => {
         const totalCartPrice = CartItemArry.reduce((total, item) => total + Number(item.price) * item.quantity, 0);
