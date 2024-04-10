@@ -41,8 +41,12 @@ cd react_app
 npm install
 # Run App
 npm run start
+
+#
 You might need to update some configuration to make sure it points to your local Drupal installation.
 
+# Add extension to avoid CHORS error
 To avoid fetch API errors, add the "moesif-origin-cors-change" extension to your Chrome browser.
 
+#
 Following these steps will set up the "D10React" project locally, allowing you to run both the Drupal backend and the React frontend.
