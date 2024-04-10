@@ -1,0 +1,165 @@
+// Variables
+$primary-color: #ED7D2D;
+
+.productItem {
+  width: 276px;
+  padding-left: 10px;
+  gap: 0px;
+  border-radius: 8px 0px 0px 0px;
+  opacity: 0px;
+  display: flex;
+  animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.card-title {
+  width: 163px;
+
+}
+
+.card-text {
+  width: 61px;
+  height: 26px;
+  top: 462px;
+  left: 12px;
+  gap: 0px;
+  opacity: 0px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  text-align: left;
+}
+
+// .cartButton {
+//     width: 104px;
+//     height: 36px;
+//     top: 456px;
+//     left: 160px;
+//     padding: 7px 12px 7px 12px !important;
+//     gap: 0px;
+//     border-radius: 4px 0px 0px 0px !important;
+//     opacity: 0px;
+//     background-color: $primary-color !important;
+// }
+
+.cartButton {
+  background-color: $primary-color !important;
+  border: none !important;
+  margin-left: 0.6em !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+
+.card {
+  border: 1px solid #f8efef !important;
+}
+
+.card-body {
+  height: 140px;
+}
+
+.card-title {
+  height: 50px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.add-to-cart-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInUp 0.5s ease-in-out forwards;
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translate(-50%, 20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+/* Media Queries for Small Screens */
+@media only screen and (max-width: 768px) {
+  .card {
+    width: calc(50% - 20px);
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
+
+  .cartButton {
+    margin-top: 5px;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+  }
+
+  .card-body {
+    height: 140px !important;
+  }
+
+  .modal-content {
+    width: 90%;
+    /* Adjust width for small screens */
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .card {
+    width: calc(100% - 20px);
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
+
+  .card-body {
+    height: 140px !important;
+  }
+
+  .cartButton {
+    margin-top: 5px;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+  }
+
+  .modal-content {
+    width: 90%;
+    /* Adjust width for small screens */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .modal-content {
+    width: 90%;
+    /* Adjust width for small screens */
+  }
+}
