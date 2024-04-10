@@ -49,7 +49,7 @@ const ProductItem = (products) => {
         </div>
       )}
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 animate-fade-in">
           {item.length > 0 && item.map((res, idx) => {
             const Img = getimageUri(res.relationships.field_product_image.data.meta.drupal_internal__target_id);
             const cartObj = {
@@ -59,7 +59,7 @@ const ProductItem = (products) => {
               price: res.attributes.field_selling_price
             }
             return (
-              <div key={res.id} className="bg-white rounded-lg shadow-md p-3">
+              <div key={res.id} className="bg-white rounded-lg shadow-md p-3 hover:transform hover:scale-105 transition-transform duration-300 ease-in-out">
                 <img src={PUBLIC_URL + Img.attributes.uri.url} alt={res.attributes.title} className="w-full h-48 object-cover mb-4" />
                 <h2 className="text-lg font-bold">{res.attributes.title}</h2>
                 <div className="flex justify-between items-center">
