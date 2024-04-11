@@ -1,22 +1,26 @@
 import { useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/esm/Button';
 import ProductViewButton from "./ProductViewButton";
 import { PUBLIC_URL } from "../config";
 
 import './ProductItem.scss';
+import Navbar from './NavBar';
 
 const ProductItem = (products) => {
   const [cartItems, setCartItems] = useState([]);
   const [showAddToCartMessage, setShowAddToCartMessage] = useState(false);
   const [addedProduct, setAddedProduct] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  // Function to handle showing the cart modal.
+  // Passing this function both productviewbutton and navbar page. So, adding this Function in parent component.
+  const showCartModal = (bol) => {
+    setShowModal(bol);
+  };
 
   const item = products.item;
   const itemImg = products.itemImages;
   const getimageUri = (fid) => {
-    const img = itemImg.filter(image => image.attributes.drupal_internal__fid == fid);
+    const img = itemImg.filter(image => image.attributes.drupal_internal__fid === fid);
     return img[0];
   }
   // Function to update cart
@@ -40,9 +44,15 @@ const ProductItem = (products) => {
       setAddedProduct(null);
     }, 3000);
   };
-
   return (
     <>
+      {cartItems &&
+        <Navbar
+          count={cartItems.length}
+          showModal={showModal}
+          showCartModal={showCartModal}
+        />
+      }
       {showAddToCartMessage && (
         <div className="add-to-cart-message">
           {addedProduct && (<p>{addedProduct.title} added to cart!</p>)}
@@ -63,10 +73,10 @@ const ProductItem = (products) => {
                 <img src={PUBLIC_URL + Img.attributes.uri.url} alt={res.attributes.title} className="w-full h-48 object-cover mb-4" />
                 <h2 className="text-lg font-bold">{res.attributes.title}</h2>
                 <div className="flex justify-between items-center">
-                <p className="text-gray-600 pt-2">${res.attributes.field_selling_price}</p>
-                <button className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-1 px-2 rounded cartButton" onClick={() => addToCart(cartObj)}>
-                  Add to Cart
-                </button>
+                  <p className="text-gray-600 pt-2">${res.attributes.field_selling_price}</p>
+                  <button className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-1 px-2 rounded cartButton" onClick={() => addToCart(cartObj)}>
+                    Add to Cart
+                  </button>
                 </div>
               </div>
             )
@@ -74,7 +84,12 @@ const ProductItem = (products) => {
           })}
         </div>
       </div>
-      <ProductViewButton cartItems={cartItems} setCartItems={updateCart} />
+      <ProductViewButton
+        cartItems={cartItems}
+        setCartItems={updateCart}
+        showModal={showModal}
+        showCartModal={showCartModal}
+      />
     </>
   )
 }

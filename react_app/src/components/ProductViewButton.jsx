@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Image, Modal, Table } from 'react-bootstrap';
 import Button from 'react-bootstrap/esm/Button';
 import './ProductViewButton.scss';
 
 
 const ProductViewButton = (cartItems) => {
-    const [showModal, setShowModal] = useState(false);
+   // const [showModal, setShowModal] = useState(false);
     const CartItemArry = cartItems && cartItems.cartItems;
-
-    // Function to handle showing the cart modal
-    const showCartModal = () => {
-        setShowModal(true);
-    };
 
     // Function to hide the cart modal
     const hideCartModal = () => {
-        setShowModal(false);
+      cartItems.showCartModal(false);
     };
     // Calculate total price of all items in the cart
     const calculateTotalPrice = () => {
@@ -50,9 +45,9 @@ const ProductViewButton = (cartItems) => {
     };
     return (
         <div className="viewCartButton">
-            <Button variant="secondary" onClick={showCartModal}>View Cart</Button>
+            <Button variant="secondary" onClick={cartItems.showCartModal}>View Cart</Button>
             {/* Modal for displaying cart */}
-            <Modal show={showModal} onHide={hideCartModal}>
+            <Modal show={cartItems.showModal} onHide={hideCartModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Order Summary</Modal.Title>
                 </Modal.Header>

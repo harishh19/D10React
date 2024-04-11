@@ -21,7 +21,6 @@ const ProductListPage = () => {
 
   return (
     <div className="product-list-container">
-      <h1 className="title">Product List</h1>
       <div className="card-container">
         {products.map(product => (
           <div key={product.id} className="card">
